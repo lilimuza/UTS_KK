@@ -1,0 +1,35 @@
+import matplotlib as plt
+from sklearn.datasets import make_blobs
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import StandardScaler
+features, true_label = make_blobs(
+    n_samples=510,
+    centers=5,
+    cluster_std=5,
+    random_state=42
+)
+features[:10]
+true_label[:200]
+standard_skala = StandardScaler()
+skala_fitur = standard_skala.fit_transform(features)
+skala_fitur[:10]
+metode_kmeans = KMeans(
+    init="random", 
+    n_clusters=5, 
+    n_init=10, 
+    max_iter=100, 
+    random_state=41
+    )
+metode_kmeans.fit(skala_fitur)
+metode_kmeans.inertia_
+metode_kmeans.cluster_centers_
+metode_kmeans.n_iter_
+metode_kmeans.labels_
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+color = np.array(["Red","Green","Blue","yellow","brown"])
+plt.subplot(1,2,2)
+plt.scatter(skala_fitur[:,0], skala_fitur[:,1], s=50, alpha=1, cmap='viridis', c=color[metode_kmeans.labels_])
